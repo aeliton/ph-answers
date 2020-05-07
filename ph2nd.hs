@@ -1,4 +1,93 @@
 import Data.Char
+--import Prelude hiding ((^))
+
+-- 6.7
+-- a.
+and' :: [Bool] -> Bool
+and' [] = False
+and' [True] = True
+and' (False:_) = False
+and' (True:xs) = and' xs
+
+
+-- 6.5 
+--length :: [a] -> Int
+--length [] = 0
+--length (x:xs) = 1 + length xs
+--
+-- length [1, 2, 3]
+-- (applying length)
+-- 1 + length [2, 3]
+-- (applying length)
+-- 1 + 1 + length [3]
+-- (applying length)
+-- 1 + 1 + 1 + length []
+-- (applying length)
+-- 1 + 1 + 1 + 0
+-- (applying +)
+-- 3
+--
+-- drop :: Int -> [a] -> [a]
+-- drop 0 xs = xs 
+-- drop _ [] = []
+-- drop n (_:xs) = drop (n-1) xs
+--
+-- drop 3 [1, 2, 3, 4, 5]
+-- (applying drop)
+-- drop 2 [2, 3, 4, 5]
+-- (applying drop)
+-- drop 1 [3, 4, 5]
+-- (applying drop)
+-- drop 0 [4, 5]
+-- (applying drop)
+-- [4, 5]
+--
+-- init :: [a] -> [a]
+-- init [_] = []
+-- init (x:xs) = x : init xs
+--
+-- init [1, 2, 3]
+-- (applying init)
+-- 1 : init [2, 3]
+-- (applying init)
+-- 1 : 2 : init [3]
+-- (applying init)
+-- 1 : 2 : []
+
+-- 6.4
+euclid :: Int -> Int -> Int
+euclid m n
+    | m == n = n
+    | m > n = euclid (m - n) n
+    | otherwise = euclid (n - m) m
+
+-- 6.3
+--(^) :: (Integral b, Num a) => a -> b -> a 
+--b ^ 0 = 1
+--b ^ e | e > 0 = b * b ^ (e - 1)
+--
+-- evaluating 2 ^ 3
+-- (applying ^)
+-- 2 * 2 ^ (3 - 1)
+-- (applying ^)
+-- 2 * 2 * 2 ^ (2 - 1)
+-- (applying ^)
+-- 2 * 2 * 2 * 2 ^ (1 - 1)
+-- (applying ^)
+-- 2 * 2 * 2 * 1
+-- (applying *)
+-- 8
+
+-- 6.2
+sumdown :: Int -> Int
+sumdown 0 = 0
+sumdown n | n > 0 = n + sumdown (n - 1)
+
+
+-- 6.1
+factorial :: Int -> Int
+factorial 0 = 1
+factorial n | n >= 0 = n * factorial (n - 1)
 
 let2int :: Char -> Int
 let2int n
