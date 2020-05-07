@@ -1,14 +1,18 @@
 import Data.Char
 
 let2int :: Char -> Int
-let2int n = ord n - ord 'a' 
+let2int n
+    | isLower n = ord n - ord 'a' 
+    | otherwise = ord n - ord 'A'
 
 int2let :: Int -> Char
-int2let n = chr (ord 'a' + n)
+int2let n
+    | n < 26 = chr (ord 'a' + n)
+    | otherwise = chr (ord 'A' + n)
 
 shift :: Int -> Char -> Char
 shift n c
-    | isLower c = int2let (mod (let2int c + n) 26)
+    | isAlpha c = int2let (mod (let2int c + n) 26)
     | otherwise = c
 
 encode :: Int -> String -> String
@@ -20,12 +24,17 @@ percent n t = fromIntegral n / (fromIntegral t) * 100.0
 lowers :: String -> String
 lowers xs = [x | x <- xs, isLower x]
 
+toLower' :: String -> String
+toLower' xs = [int2let i | i <- map let2int xs]
+
 count :: Char -> String -> Int
 count c cs = sum [ 1 | x <- cs, x == c] 
 
 freqs :: String -> [Float]
 freqs xs = [percent (count c ls) (length ls) | c <- ['a'..'z']]
-            where ls = lowers(xs)
+            where ls = toLower' xs
+{-freqs xs = [percent (count c ls) (length ls) | c <- ['a'..'z']]-}
+            {-where ls = lowers(xs)-}
 
 table :: [Float]
 table = [8.1, 1.5, 2.8, 4.2, 12.7, 2.2, 2.0, 6.1, 7.0, 0.2, 0.8, 4.0, 2.4, 6.7,
