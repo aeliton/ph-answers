@@ -173,7 +173,13 @@ perfects :: Int -> [Int]
 perfects n = [x | x <- [1..n], x == sum [f | f <- factors x, f /= x]]
 
 -- 5.7
--- concat [[(x, y), (x, y + 1 )] | (x, y) <- [(1, 3), (2, 3)]]
+-- concat [[(x, y) | y <- [3, 4]] | x <- [1, 2]]
+-- (expanding inner comprehension)
+-- concat [[(x, 3), (x, 4)] | x <- [1, 2]]
+-- (expanding outer comprehension]
+-- concat [[(1, 3), (1, 4)], [(2, 3), (2, 4)]]
+-- (applying concat)
+-- [(1, 3), (1, 4), (2, 3), (2, 4)]
 
 --5.9
 scalarproduct :: [Int] -> [Int] -> Int
