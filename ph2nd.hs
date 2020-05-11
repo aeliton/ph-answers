@@ -1,18 +1,23 @@
 import Data.Char
 --import Prelude hiding ((^))
 
--- 6.7 a.
+-- 6.6 c.
+replicate' :: Int -> a -> [a]
+replicate' 0 _ = []
+replicate' n a = a : replicate' (n - 1) a
+
+-- 6.6 b.
+concat' :: [[a]] -> [a]
+concat' [] = [] 
+concat' ([]:xss) = concat' xss
+concat' ((x:xs):xss) = x : concat' (xs:xss)
+
+-- 6.6 a.
 and' :: [Bool] -> Bool
 and' [] = False
 and' [True] = True
 and' (False:_) = False
 and' (True:xs) = and' xs
-
--- 6.7 b.
-concat' :: [[a]] -> [a]
-concat' [] = [] 
-concat' ([]:xss) = concat' xss
-concat' ((x:xs):xss) = x : concat' (xs:xss)
 
 -- 6.5 
 --length :: [a] -> Int
@@ -164,8 +169,8 @@ grid m n = [(x, y) | x <- [0..m], y <- [0..n]]
 square :: Int -> [(Int, Int)]
 square m = [(x, y) | (x, y) <- grid m m, x /= y]
 
-replicate' :: Int -> a -> [a]
-replicate' n x = [x | _ <- [1..n]]
+{-replicate' :: Int -> a -> [a]-}
+{-replicate' n x = [x | _ <- [1..n]]-}
 
 pyths :: Int -> [(Int, Int, Int)]
 pyths n = [(a, b, c) | a <- [1..n], b <- [1..n], c <- [1..n], a^2 == b^2 + c^2]
