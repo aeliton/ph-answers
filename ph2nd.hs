@@ -1,14 +1,18 @@
 import Data.Char
 --import Prelude hiding ((^))
 
--- 6.7
--- a.
+-- 6.7 a.
 and' :: [Bool] -> Bool
 and' [] = False
 and' [True] = True
 and' (False:_) = False
 and' (True:xs) = and' xs
 
+-- 6.7 b.
+concat' :: [[a]] -> [a]
+concat' [] = [] 
+concat' ([]:xss) = concat' xss
+concat' ((x:xs):xss) = x : concat' (xs:xss)
 
 -- 6.5 
 --length :: [a] -> Int
