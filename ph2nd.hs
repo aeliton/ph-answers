@@ -1,5 +1,24 @@
 import Data.Char
 --import Prelude hiding ((^))
+-- 6.9 c
+last' :: [a] -> a
+last' [x] = x
+last' (x:xs) = last' xs
+
+-- 6.9 b
+take' :: Int -> [a] -> [a]
+take' _ [] = []
+take' n (x:xs)
+    | n <= 0 = []
+    | otherwise = x : (take (n - 1) xs)
+
+
+-- 6.9 a
+sum' :: Num a => [a] -> a
+sum' [] = 0
+sum' (x:xs) = x + sum xs
+
+
 -- 6.8
 halves :: [a] -> ([a], [a])
 halves xs = (take n xs, drop n xs)
