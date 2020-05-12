@@ -1,5 +1,12 @@
 import Data.Char
 --import Prelude hiding ((^))
+-- 6.6 e.
+elem' :: Eq a => a -> [a] -> Bool
+elem' _ [] = False
+elem' a (x:xs) 
+    | x == a = True
+    | otherwise = elem' a xs
+
 -- 6.6 d.
 (!!!) :: [a] -> Int -> a
 (!!!) (x:_) 0 = x
