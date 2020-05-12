@@ -43,8 +43,8 @@ msort xs = merge (msort as) (msort bs)
 merge [] ys = ys
 merge xs [] = xs
 merge (x:xs) (y:ys)
-    | x < y = x : y : merge xs ys
-    | otherwise = y : x : merge xs ys-}
+    | x < y = x : merge xs (y:ys)
+    | otherwise = y : merge (x:xs) ys-}
 
 -- 6.6 e.
 elem' :: Eq a => a -> [a] -> Bool
