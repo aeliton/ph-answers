@@ -1,5 +1,14 @@
 import Data.Char
 --import Prelude hiding ((^))
+
+-- 7
+merge :: Ord a => [a] -> [a] -> [a]
+merge [] ys = ys
+merge xs [] = xs
+merge (x:xs) (y:ys)
+    | x < y = x : y : merge xs ys
+    | otherwise = y : x : merge xs ys
+
 -- 6.6 e.
 elem' :: Eq a => a -> [a] -> Bool
 elem' _ [] = False
