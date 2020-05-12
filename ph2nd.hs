@@ -1,5 +1,10 @@
 import Data.Char
 --import Prelude hiding ((^))
+-- 6.6 d.
+(!!!) :: [a] -> Int -> a
+(!!!) (x:_) 0 = x
+(!!!) (x:xs) n = xs !!! (n - 1)
+
 
 -- 6.6 c.
 replicate' :: Int -> a -> [a]
